@@ -18,7 +18,7 @@ jobs:
         run: docker login https://docker.pkg.github.com -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: docker build
-        run: docker build --pull -t docker.pkg.github.com/${{ github.repository }} .
+        run: docker build --pull -t docker.pkg.github.com/${{ github.repository }}/main .
 
       - name: docker push
         run: docker push docker.pkg.github.com/${{ github.repository }}/main
