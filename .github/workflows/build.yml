@@ -13,10 +13,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: docker build
-        run: docker build --pull -t ${{ github.repository }} .
-
+      
       - name: docker login
         run: docker login https://docker.pkg.github.com -u ${{ github.repository_owner }} -p ${{ secrets.GITHUB_TOKEN }}
+
+      - name: docker build
+        run: docker build --pull -t docker.pkg.github.com/${{ github.repository }} .
+
+      - name: docker push
+        run: docker push docker.pkg.github.com/${{ github.repository }}
+
         
