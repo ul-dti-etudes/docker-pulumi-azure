@@ -1,19 +1,16 @@
 name: Docker build & push
 
 on:
-  push:
-    branches: main
-
   workflow_dispatch:
 
 jobs:
   docker:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: docker login
         run: docker login ghcr.io -u ${{ secrets.CONTAINER_REGISTRY_USER }} -p ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
 
@@ -23,4 +20,3 @@ jobs:
       - name: docker push
         run: docker push ghcr.io/${{ github.repository }}/main
 
-        
