@@ -6,16 +6,19 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  packages: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: docker login
-        run: docker login ghcr.io -u ${{ secrets.CONTAINER_REGISTRY_USER }} -p ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
+
+#      - name: docker login
+#        run: docker login ghcr.io -u ${{ secrets.CONTAINER_REGISTRY_USER }} -p ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
 
       - name: docker build
         run: docker build --pull -t ghcr.io/${{ github.repository }}/main .
@@ -23,4 +26,4 @@ jobs:
       - name: docker push
         run: docker push ghcr.io/${{ github.repository }}/main
 
-        
+
