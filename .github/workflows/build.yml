@@ -6,9 +6,6 @@ on:
 
   workflow_dispatch:
 
-#permissions:
-#  packages: write
-
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -25,5 +22,7 @@ jobs:
 
       - name: docker push
         run: docker push ghcr.io/${{ github.repository }}/main
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
 
