@@ -17,8 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-#      - name: docker login
-#        run: docker login ghcr.io -u ${{ secrets.CONTAINER_REGISTRY_USER }} -p ${{ secrets.CONTAINER_REGISTRY_TOKEN }}
+      - name: docker login
+        run: docker login ghcr.io --username ${{ secrets.GITHUB_TOKEN }}
 
       - name: docker build
         run: docker build --pull -t ghcr.io/${{ github.repository }}/main .
